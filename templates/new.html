@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+
+    <!-- Bootstrap CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    
+    <title>My Book Store</title>
+  </head>
+  <style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding-bottom: 20px;
+      }
+      html {
+        box-sizing: border-box;
+      }
+      *, *:before, *:after {
+        box-sizing: inherit;
+      }
+      .navbar-brand{
+      font-size: 40px;
+      font-family: "copperplate", fantasy;
+      }
+      .row{
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+  </style>
+  <body>
+    <!-- navbar start -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+        <div class="container-fluid">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIakjjQv-lzr1eWokGKG04i8h87_ocRejgsw&usqp=CAU" alt="Bootstrap" width="50" height="44">
+          <a class="navbar-brand" href="/">  </a>
+          <a class="navbar-brand" href="/" >My BOOK Store</a>
+          <button class="navbar-toggler" type="button" row-bs-toggle="collapse" row-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/home">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Select Price Range
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/low">Less Visited</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/medium">Average visited</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/high">Highely Visited</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Select Year Range
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/year_one">Before 1900</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/year_two">Between 1900-2000</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="/year_three">After 2000</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Devloper info
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <div><a  class="dropdown-item" href="https://github.com/Piyushramgirwar22" target="_blank" target="_blank" >GitHub</a></div>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <div><a  class="dropdown-item" href="https://www.linkedin.com/in/ramgirwar22/" target="_blank" target="_blank" >LinkedIn</a></div>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <div><a  class="dropdown-item" href="https://drive.google.com/file/d/1HKDVc-ldwiRKBXoG5MnGz-RfMZKNKK1j/view?usp=sharing" target="_blank" target="_blank" >Resume</a></div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex" role="search" action = "/movies" method= "POST">
+              <input class="form-control me-2" type="search" name="search movie" placeholder="{{ input }}" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Recommend</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+    <!-- navbar end -->
+
+    <!-- card start -->
+      <div class="row">
+        {% for row in data %}
+        <div class="card mb-3" style="max-width: 33.3%;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img src="{{row['cover']}}" class="img-fluid rounded-start" alt="{{row['book_name']}}">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{row['book_name']}}</h5>
+                  <p class="card-text"><small class="text-muted">AUTHOR : {{row['author']}}</small></p>
+                  <p class="card-text"><small class="text-muted">PUBLICATION :{{row['publication_year']}}</small></p>
+                  <p class="card-text"><small class="text-muted">GENRE : {{row['genre']}} </small></p>
+                  <p class="card-text"><small class="text-muted">RATING : {{row['rating']}} </small></p>
+                  <p class="card-text"><small class="text-muted">TOTAL RATING : {{row['total ratings']}} </small></p>
+                  <div class="d-flex flex-row justify-content-center mt-auto">
+                    <a href="{{row['page_link']}}" target="_blank" target="_blank"  type="button" class="btn btn-danger">click for more info</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    <!-- card end -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
